@@ -1,16 +1,6 @@
-# filebeat.config:
-# modules:
-# path: ${path.config}/modules.d/*.yml
-# reload.enabled: false
-
-# setup.kibana:
-#   host: "172.19.0.6:5601"
-
-# processors:
-#   - add_cloud_metadata: ~
 processors:
 - drop_fields:
-    fields: ["host"] # ELS v6.x+ 会引起index mapping问题,所以将其忽略
+    fields: ["host"] # ELS v6.6.1 会引起index mapping问题,所以将其忽略,其他版本不知
 
 filebeat.inputs: #多个输入流以`-`的方式声明
 - type: tcp
@@ -21,10 +11,8 @@ filebeat.inputs: #多个输入流以`-`的方式声明
   # nagios_service:
 
 output.logstash:
-  hosts: ["172.19.0.7:5044"]
+  hosts: ["10.0.0.12:5044","10.0.1.133:5044"]
   bulk_max_size: 409600
   enabled: true
-  # nagios_host:
-  # nagios_service:
   #username: '${ELASTICSEARCH_USERNAME:}'
   #password: '${ELASTICSEARCH_PASSWORD:}'

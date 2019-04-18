@@ -13,7 +13,7 @@ class FilebeatLogger {
         this.port = '13012';
         this.host = '127.0.0.1';
         this.baseInfo = {
-            stage: 'DEV'
+            stage: process.env.STAGE
         };
     }
 

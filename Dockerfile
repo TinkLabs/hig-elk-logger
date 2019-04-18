@@ -24,26 +24,3 @@ RUN chmod 777 docker-entrypoint.sh
 EXPOSE 80
 
 CMD ["./docker-entrypoint.sh"]
-
-#
-#FROM docker.elastic.co/beats/filebeat:7.0.0
-#COPY filebeat.yml /usr/share/filebeat/filebeat.yml
-#USER root
-#RUN chown root /usr/share/filebeat/filebeat.yml
-#
-#
-#WORKDIR /usr/src/app
-#
-#COPY package*.json ./
-#
-#RUN  npm install
-#
-## Bundle app source
-#COPY middleware ./middleware
-#COPY services ./services
-#COPY router ./router
-#COPY app.js ./app.js
-#
-#EXPOSE 80
-#
-#ENTRYPOINT ["npm","start"]
