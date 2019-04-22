@@ -3,11 +3,7 @@ filebeat.processors:
   enabled: true
   max_message_size: 10MiB
   host: "0.0.0.0:13012"
-  fields:
-    type: hig_elk_logger
-  fields_under_root: true
-  json.keys_under_root: true
-
+  tags: ["hig-elk"]
 #filebeat.inputs: #多个输入流以`-`的方式声明
 #- type: tcp
 #  max_message_size: 10MiB
