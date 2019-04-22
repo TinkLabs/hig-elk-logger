@@ -5,6 +5,8 @@ tar xzvf filebeat-7.0.0-linux-x86_64.tar.gz
 
 COPY filebeat.yml /filebeat-7.0.0-linux-x86_64/
 
+RUN chmod go-w /filebeat-7.0.0-linux-x86_64/filebeat.yml
+
 WORKDIR /usr/src/app
 
 COPY package*.json ./
