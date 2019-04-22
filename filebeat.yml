@@ -4,6 +4,7 @@ filebeat.processors:
   max_message_size: 10MiB
   host: "0.0.0.0:13012"
   tags: ["hig-elk"]
+    
 #filebeat.inputs: #多个输入流以`-`的方式声明
 #- type: tcp
 #  max_message_size: 10MiB
