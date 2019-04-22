@@ -44,7 +44,7 @@ class FilebeatLogger {
         //     .end(JSON.stringify(obj));
 
 
-        fs.appendFile('/usr/src/app/elklog.log', `${JSON.stringify(obj)} \n`, function (err) {
+        fs.appendFile('/usr/src/app/elklog.log', `${JSON.stringify(obj)}\n`, function (err) {
             if (err) throw err;
             console.log('Saved to file!');
         });

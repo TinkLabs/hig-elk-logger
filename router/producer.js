@@ -1,13 +1,13 @@
 let router = require("express").Router();
 let filebeatLogger = require("../services/filebeat-logger");
-let fs=require("fs");
+let fs = require("fs");
 
 router.get('/', async function (req, res, next) {
-    fs.readFile('/usr/src/app/elklog.log',(err,data)=>{
-       if(err){
-           res.fail(`error with read file:${err}`);
-       }
-       res.success(data);
+    fs.readFile('/usr/src/app/elklog.log', "utf8", (err, data) => {
+        if (err) {
+            res.fail(`error with read file:${err}`);
+        }
+        res.success(data);
     });
 
     // res.success('success');
