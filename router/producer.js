@@ -10,7 +10,7 @@ router.get('/', async function (req, res, next) {
        res.success(data);
     });
 
-    res.success('success');
+    // res.success('success');
 });
 router.post('/info', async function (req, res, next) {
     filebeatLogger.info(req.body);
