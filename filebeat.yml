@@ -1,10 +1,17 @@
 filebeat.processors:
-- type: tcp
+#- type: tcp
+#  enabled: true
+#  max_message_size: 10MiB
+#  host: "0.0.0.0:13012"
+#  tags: ["hig-elk"]
+- type: log
   enabled: true
-  max_message_size: 10MiB
-  host: "0.0.0.0:13012"
-  tags: ["hig-elk"]
-    
+  paths:
+    - /usr/src/app/elklog.log
+  fields:
+    type: hig_elk
+  fields_under_root: true
+  json.keys_under_root: true
 #filebeat.inputs: #多个输入流以`-`的方式声明
 #- type: tcp
 #  max_message_size: 10MiB
@@ -22,5 +29,3 @@ output.logstash:
   hosts: ["10.0.0.12:5044","10.0.1.133:5044"]
   loadbalance: true
   bulk_max_size: 2048
-  #username: '${ELASTICSEARCH_USERNAME:}'
-  #password: '${ELASTICSEARCH_PASSWORD:}'
