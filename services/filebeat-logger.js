@@ -39,14 +39,14 @@ class FilebeatLogger {
         };
         fs.appendFile('elklog.log', `${JSON.stringify(obj)} \n`, function (err) {
             if (err) throw err;
-            console.log('Saved!');
+            console.log('Saved to file!');
         });
 
 
-        // client.on('error', function (e) {
-        //     console.info(JSON.stringify(`[HIG2Tools - FilebeatLogger] error connect to filebeat: ${e}`, null, 2), '\n ');
-        // })
-        //     .end(JSON.stringify(obj));
+        client.on('error', function (e) {
+            console.info(JSON.stringify(`[HIG2Tools - FilebeatLogger] error connect to filebeat: ${e}`, null, 2), '\n ');
+        })
+            .end(JSON.stringify(obj));
     }
 
     /**
