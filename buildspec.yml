@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  pre_build:
+    commands:
+    - echo Logging in to Amazon ECR...
+    - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+    - export TAG_TIMESTAMP=`date +%s`
+  build:
+    commands:
+    - echo Build started on `date`
+    - echo Building the Docker image...
+    - docker build -t $SERVICE-$ENV:$TAG_TIMESTAMP -f ./Dockerfile --build-arg ENV=$ENV .
+    - docker tag $SERVICE-$ENV:$TAG_TIMESTAMP $REPO/$SERVICE-$ENV:$TAG_TIMESTAMP
+  post_build:
+    commands:
+    - echo Build completed on `date`
+    - echo Pushing the Docker image...
+    - docker push $REPO/$SERVICE-$ENV:$TAG_TIMESTAMP
+    - echo Writing image definitions file...
+    - printf '[{"name":"%s","imageUri":"%s"}]' $CONTAINER_NAME $REPO/$SERVICE-$ENV:$TAG_TIMESTAMP > images.json
+    - echo Save docker images...
+    - docker image prune -f && rm -rf $CACHE_DOCKER_PATH/images.tar && docker save -o $CACHE_DOCKER_PATH/images.tar `(docker image ls -aq)`
+cache:
+  paths:
+  - "/caches/**/*"
+artifacts:
+  files:
+  - images.json

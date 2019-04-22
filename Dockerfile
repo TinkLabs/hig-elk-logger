@@ -9,8 +9,8 @@ WORKDIR /usr/src/app
 
 COPY package*.json ./
 
-RUN npm install && npm install pm2 -g
-
+RUN npm install
+#RUN npm install pm2 -g
 # Bundle app source
 COPY middleware ./middleware
 COPY services ./services

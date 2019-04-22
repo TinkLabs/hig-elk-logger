@@ -13,6 +13,7 @@ filebeat.inputs: #多个输入流以`-`的方式声明
 output.logstash:
   hosts: ["10.0.0.12:5044","10.0.1.133:5044"]
   bulk_max_size: 409600
+  index: filebeat-hig
   enabled: true
   #username: '${ELASTICSEARCH_USERNAME:}'
   #password: '${ELASTICSEARCH_PASSWORD:}'
