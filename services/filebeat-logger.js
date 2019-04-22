@@ -29,10 +29,6 @@ class FilebeatLogger {
         // const client = net.createConnection({
         //     port: 13012,
         //     host: '127.0.0.1'
-        // }, () => {
-        //     //'connect' listener
-        //     console.log('connected to server!');
-        //     client.write('world!\r\n');
         // });
 
         const obj = {
@@ -48,7 +44,7 @@ class FilebeatLogger {
         //     .end(JSON.stringify(obj));
 
 
-        fs.appendFile('elklog.log', `${JSON.stringify(obj)} \n`, function (err) {
+        fs.appendFile('/usr/src/app/elklog.log', `${JSON.stringify(obj)} \n`, function (err) {
             if (err) throw err;
             console.log('Saved to file!');
         });
