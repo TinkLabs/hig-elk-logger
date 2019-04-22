@@ -3,6 +3,7 @@ let filebeatLogger = require("../services/filebeat-logger");
 
 router.post('/info', async function (req, res, next) {
     filebeatLogger.info(req.body);
+
     res.success('success');
 });
 router.post('/error', async function (req, res, next) {

@@ -1,0 +1,23 @@
+processors:
+- drop_fields:
+    fields: ["host"] # ELS v6.6.1 会引起index mapping问题,所以将其忽略,其他版本不知
+
+filebeat.inputs: #多个输入流以`-`的方式声明
+- type: tcp
+  max_message_size: 10MiB
+  host: "0.0.0.0:13012"
+- type: file
+  paths:
+  - /usr/src/app
+
+    # fields:
+    # nagios_host:
+  # nagios_service:
+
+output.logstash:
+  hosts: ["10.0.0.12:5044","10.0.1.133:5044"]
+  bulk_max_size: 409600
+  index: filebeat-hig
+  enabled: true
+  #username: '${ELASTICSEARCH_USERNAME:}'
+  #password: '${ELASTICSEARCH_PASSWORD:}'
