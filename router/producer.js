@@ -3,9 +3,10 @@ let filebeatLogger = require("../services/filebeat-logger");
 let fs = require("fs");
 
 router.get('/', async function (req, res, next) {
-    fs.readFile('/usr/src/app/elklog.log', "utf8", (err, data) => {
-        if (err) {
-            res.fail(`error with read file:${err}`);
+    fs.readFile('/usr/src/app/elklog.log', "utf8", (e, data) => {
+        if (e) {
+            res.fail(`[error]:${e}`);
+            return;
         }
         res.success(data);
     });
@@ -13,7 +14,12 @@ router.get('/', async function (req, res, next) {
     // res.success('success');
 });
 router.post('/info', async function (req, res, next) {
-    filebeatLogger.info(req.body);
+    try {
+        filebeatLogger.info(req.body);
+    } catch (e) {
+        res.fail(`[error]:${e}`);
+        return;
+    }
 
     res.success('success');
 });
