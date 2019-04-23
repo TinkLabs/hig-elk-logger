@@ -1,9 +1,22 @@
-filebeat.processors:
+#filebeat.processors:
+#- type: log
+#  enabled: true
+#  paths:
+#    - /usr/src/app/elklog.log
+#  fields:
+#    type: hig_elk
+#  fields_under_root: true
+#  json.keys_under_root: true
 #- type: tcp
 #  enabled: true
 #  max_message_size: 10MiB
 #  host: "0.0.0.0:13012"
 #  tags: ["hig-elk"]
+
+processors:
+- drop_fields:
+    fields: ["host"]
+filebeat.inputs:
 - type: log
   enabled: true
   paths:
@@ -12,8 +25,6 @@ filebeat.processors:
     type: hig_elk
   fields_under_root: true
   json.keys_under_root: true
-
-#filebeat.inputs: #多个输入流以`-`的方式声明
 #- type: tcp
 #  enabled: true
 #  max_message_size: 10MiB
@@ -26,7 +37,7 @@ setup.template.settings:
   index.number_of_shards: 3
 filebeat.spool_size: 4096
 filebeat.idle_timeout: 2s
-
+setup.kibana:
 output.logstash:
   enabled: true
   compression_level: 1
