@@ -11,8 +11,6 @@ const fs = require('fs');
 class FilebeatLogger {
     constructor() {
         this.enable = true;
-        this.port = '13012';
-        this.host = '127.0.0.1';
         this.baseInfo = {
             stage: process.env.STAGE
         };
@@ -26,24 +24,12 @@ class FilebeatLogger {
         if (!this.enable) {
             return;
         }
-        // const client = net.createConnection({
-        //     port: 13012,
-        //     host: '127.0.0.1'
-        // });
-
         const obj = {
             ...this.baseInfo,
             '@timestamp': new Date(),
             msg,
             level: 'info'
         };
-
-        // client.on('error', function (e) {
-        //     console.info(JSON.stringify(`[HIG2Tools - FilebeatLogger] error connect to filebeat: ${e}`, null, 2), '\n ');
-        // })
-        //     .end(JSON.stringify(obj));
-
-
         fs.appendFile('/usr/src/app/elklog.log', `${JSON.stringify(obj)}\n`, function (err) {
             if (err) throw err;
             console.log('Saved to file!');

@@ -4,6 +4,7 @@
 #pm2 start --name "ELK-logger" app.js
 nohup node app.js &
 cd /filebeat-7.0.0-linux-x86_64
-./filebeat -e setup
-./filebeat modules enable system logstash
+#./filebeat -e setup
+#./filebeat setup --pipelines --modules system,nginx,mysql
+#./filebeat modules enable system logstash
 ./filebeat -e -d "*"

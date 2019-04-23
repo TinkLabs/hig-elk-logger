@@ -19,10 +19,10 @@ COPY services ./services
 COPY router ./router
 COPY app.js ./app.js
 
-COPY docker-entrypoint.sh ./
+COPY start.sh ./
 
-RUN chmod 777 docker-entrypoint.sh
+RUN chmod 777 start.sh
 
 EXPOSE 80
 
-CMD ["./docker-entrypoint.sh"]
+CMD ["./start.sh"]
