@@ -1,21 +1,6 @@
-#filebeat.processors:
-#- type: log
-#  enabled: true
-#  paths:
-#    - /usr/src/app/elklog.log
-#  fields:
-#    type: hig_elk
-#  fields_under_root: true
-#  json.keys_under_root: true
-#- type: tcp
-#  enabled: true
-#  max_message_size: 10MiB
-#  host: "0.0.0.0:13012"
-#  tags: ["hig-elk"]
-
 processors:
 - drop_fields:
-    fields: ["host"]
+    fields: ["host","_type","log.file.path","log.offset","tags","status_value"]
 filebeat.inputs:
 - type: log
   enabled: true
@@ -25,10 +10,6 @@ filebeat.inputs:
     type: hig_elk
   fields_under_root: true
   json.keys_under_root: true
-#- type: tcp
-#  enabled: true
-#  max_message_size: 10MiB
-#  host: "0.0.0.0:13012"
 
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml

@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 
 
 app.use(require("./middleware/resp_builder"));
-// app.use(require("./middleware/permission"));
+app.use(require("./middleware/permission"));
 
 app.use(express.static('build'));
 
@@ -20,5 +20,3 @@ app.use("/health-check", require("./router/health-check"));
 app.listen(80, function () {
     console.log('ELK logger listening on port 80!');
 });
-
-

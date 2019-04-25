@@ -1,6 +1,5 @@
 let router = require("express").Router();
 let filebeatLogger = require("../services/filebeat-logger");
-let fs = require("fs");
 
 router.post('/info', async function (req, res, next) {
     try {
