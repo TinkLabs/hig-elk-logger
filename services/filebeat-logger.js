@@ -45,6 +45,7 @@ class FilebeatLogger {
             return;
         }
         const obj = {
+            '@timestamp': new Date(),
             title,
             msg,
             level: 'error'
