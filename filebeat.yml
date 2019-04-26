@@ -1,6 +1,6 @@
 processors:
 - drop_fields:
-    fields: ["host","_type","log.file.path","log.offset","tags","status_value"]
+    fields: ["host","log.file.path","log.offset"]
 filebeat.inputs:
 - type: log
   enabled: true
@@ -26,9 +26,3 @@ output.logstash:
   loadbalance: true
   bulk_max_size: 2048
 logging.level: error
-logging.to_files: true
-logging.files:
-  path: /var/log/filebeat
-  name: filebeat
-  keepfiles: 10
-  permissions: 0600
