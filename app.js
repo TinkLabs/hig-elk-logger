@@ -1,12 +1,12 @@
 let express = require('express');
 let bodyParser = require('body-parser');
-let cookieParser=require('cookie-parser');
+let cookieParser = require('cookie-parser');
 let app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: "50mb"}));
 app.use(cookieParser());
 
-app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 
 app.use(require("./middleware/resp_builder"));
