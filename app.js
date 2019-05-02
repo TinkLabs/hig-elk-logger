@@ -3,11 +3,9 @@ let bodyParser = require('body-parser');
 let cookieParser = require('cookie-parser');
 let app = express();
 
-app.use(bodyParser.json({limit: "50mb"}));
+app.use(bodyParser.json({limit: '50mb', extended: true}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 app.use(cookieParser());
-
-app.use(bodyParser.urlencoded({extended: true}));
-
 
 app.use(require("./middleware/resp_builder"));
 app.use(require("./middleware/permission"));
