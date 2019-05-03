@@ -14,10 +14,6 @@ filebeat.inputs:
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
   reload.enabled: false
-setup.template.settings:
-  index.number_of_shards: 3
-filebeat.spool_size: 4096
-filebeat.idle_timeout: 2s
 setup.kibana:
 output.logstash:
   enabled: true
