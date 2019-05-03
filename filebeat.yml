@@ -1,11 +1,11 @@
 processors:
 - drop_fields:
-    fields: ["host","log.file.path","log.offset"]
+    fields: ["host"]
 filebeat.inputs:
 - type: log
   enabled: true
   paths:
-    - /usr/src/app/elklog.log
+    - /usr/src/app/*.log
   fields:
     type: hig_elk
   fields_under_root: true

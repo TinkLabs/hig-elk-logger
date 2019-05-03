@@ -13,7 +13,8 @@ class FilebeatLogger {
     }
 
     writeToFile(obj) {
-        fs.appendFile('/usr/src/app/elklog.log', `${JSON.stringify(obj)}\n`, function (err) {
+        let date = new Date();
+        fs.appendFile(`/usr/src/app/elklog-${date.toISOString().substr(0,10)}.log`, `${JSON.stringify(obj)}\n`, function (err) {
             if (err) throw err;
             console.log('Saved to file!');
         });
