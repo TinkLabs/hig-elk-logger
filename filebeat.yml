@@ -9,7 +9,11 @@ filebeat.inputs:
   fields:
     type: hig_elk
   fields_under_root: true
+  json.message_key: log
   json.keys_under_root: true
+  json.add_error_key: true
+  ignore_older: 48h
+  clean_inactive: 72h
 
 filebeat.config.modules:
   path: ${path.config}/modules.d/*.yml
