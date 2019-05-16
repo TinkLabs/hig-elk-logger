@@ -9,7 +9,6 @@ filebeat.inputs:
   fields:
     type: hig_elk
   fields_under_root: true
-  json.message_key: log
   json.keys_under_root: true
   json.add_error_key: true
   ignore_older: 48h
