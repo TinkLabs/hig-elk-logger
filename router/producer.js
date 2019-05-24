@@ -3,7 +3,7 @@ let filebeatLogger = require("../services/filebeat-logger");
 
 router.post('/debug', async function (req, res, next) {
     try {
-        filebeatLogger.info(req.body.msg);
+        filebeatLogger.debug(req.body.msg);
     } catch (e) {
         res.fail(`[error]:${e}`);
         return;
