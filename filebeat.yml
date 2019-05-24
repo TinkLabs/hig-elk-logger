@@ -22,6 +22,7 @@ output.logstash:
   enabled: true
   compression_level: 1
   hosts: ["10.0.0.12:5044","10.0.1.133:5044"]
+#  hosts: ["172.19.0.7:5044"]
   loadbalance: true
   bulk_max_size: 2048
 logging.level: info

@@ -12,9 +12,9 @@ class FilebeatLogger {
         this.enable = true;
     }
 
-    writeToFile(obj) {
+    writeToFile(obj,level) {
         let date = new Date();
-        fs.appendFile(`/usr/src/app/elklog-${date.toISOString().substr(0,10)}.log`, `${JSON.stringify(obj)}\n`, function (err) {
+        fs.appendFile(`/usr/src/app/elklog-${level}-${date.toISOString().substr(0,10)}.log`, `${JSON.stringify(obj)}\n`, function (err) {
             if (err) throw err;
             console.log('[Saved]',`${JSON.stringify(obj)}\n`);
         });
@@ -33,7 +33,26 @@ class FilebeatLogger {
             msg,
             level: 'info'
         };
-        this.writeToFile(obj);
+        this.writeToFile(obj,'info');
+    }
+
+    /**
+     * send debug msg to filebeat
+     * @param msg
+     * @param title
+     */
+    debug(msg, title = '') {
+        if (!this.enable) {
+            return;
+        }
+        const obj = {
+            '@timestamp': new Date(),
+            title,
+            msg,
+            level: 'debug'
+        };
+
+        this.writeToFile(obj,'debug');
     }
 
     /**
@@ -52,7 +71,7 @@ class FilebeatLogger {
             level: 'error'
         };
 
-        this.writeToFile(obj);
+        this.writeToFile(obj,'error');
     }
 }
 
