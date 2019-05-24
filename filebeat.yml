@@ -1,6 +1,6 @@
 processors:
 - drop_fields:
-    fields: ["host"]
+    fields: ["host","log.offset","ecs.version","agent.version","agent.type","input.type","tags"]
 filebeat.inputs:
 - type: log
   enabled: true
